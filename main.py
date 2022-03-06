@@ -3,14 +3,18 @@ from random import randint
 
 
 def move(x, y):
+    global app_big_ball
     global apple_apple
     global ball_next
     global ball
+    global ball_abs
+    global app_big_ball_next
     turtle.goto(x, y)
     if abs(turtle.xcor() - apple_1.xcor()) <= 10 and abs(turtle.ycor() - apple_1.ycor()) <= 10: #проверяет, когда черепашка попадает в мертвую черепашку
         ball_next += 1
+        ball_abs += 1
     if ball != ball_next: #при попадании черепашка dead :(
-        print(ball_next)
+        print(ball_abs)
         ball = ball_next
         apple_1.color('green')
         apple_1.hideturtle()
@@ -24,8 +28,16 @@ def move(x, y):
             apple_1.color('red')
             apple_1.goto(x, y)
 
-        apple_apple = 0
-        return apple_apple
+    if abs(turtle.xcor() - app_big.xcor()) <= 10 and abs(turtle.ycor() - app_big.ycor()) <= 10: #с супер черепашкой
+        app_big_ball_next += 5
+        app_big_ball += 1
+        ball_abs += 5
+        if app_big_ball != app_big_ball_next:
+            print(ball_abs)
+            print('Удалить!')
+            x_app = randint(-display_width / 2 + 100, display_width / 2 - 100)
+            y_app = randint(-display_height / 2 + 100, display_height / 2 - 100)
+            app_big.goto(x_app, y_app)
 
 def apple():
     apple_1 = turtle.Turtle()
@@ -37,6 +49,7 @@ def apple():
     apple_1.goto(x, y)
 
 
+ball_abs = 0 #ТОЧНОЕ ПОДСЧИТЫВАНИЕ БАЛЛОВ
 # цвета и скорость
 turtle.speed(8)
 turtle.colormode(255) # цветовой режим
@@ -73,6 +86,17 @@ turtle.penup()
 
 # передвижение
 turtle.onscreenclick(move)
+
+app_big = turtle.Turtle()
+app_big.speed(1)
+app_big.shape('turtle')
+app_big.color(15, 205, 15)
+app_big.penup()
+app_big_ball = 0
+app_big_ball_next = 0
+x_app = randint(-display_width / 2 + 100, display_width / 2 - 100)
+y_app = randint(-display_height / 2 + 100, display_height / 2 - 100)
+app_big.goto(x_app, y_app)
 
 #while - цикл бесконечности
 for i in range(100):
