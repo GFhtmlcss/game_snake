@@ -47,10 +47,11 @@ display = turtle.Screen()
 display_width = 900
 display_height = 600
 display.setup(display_width, display_height)
-display.bgcolor(110, 110, 50)
+display.bgcolor(102, 154, 156)
 
 # рисование яблок
 apple_1 = turtle.Turtle()
+apple_1.speed(2)
 apple_1.shape('circle')
 apple_1.color('red')
 apple_1.penup()
