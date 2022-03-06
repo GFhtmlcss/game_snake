@@ -1,30 +1,34 @@
 import turtle
 from random import randint
 
-def right():
-    turtle.setheading(0)
-    turtle.fd(50)
 
-def left():
-    turtle.setheading(180)
-    turtle.fd(100)
+def move(x, y):
+    global apple_apple
+    global ball_next
+    global ball
+    turtle.goto(x, y)
+    if abs(turtle.xcor() - apple_1.xcor()) <= 10 and abs(turtle.ycor() - apple_1.ycor()) <= 10: #проверяет, когда черепашка попадает в мертвую черепашку
+        ball_next += 1
+    if ball != ball_next: #при попадании черепашка dead :(
+        print(ball_next)
+        ball = ball_next
+        apple_1.hideturtle()
+        if apple_1.isvisible() == False:
+            print('Удалить!')
+        apple_apple = 0
+        return apple_apple
 
-def top():
-    turtle.setheading(90)
-    turtle.fd(50)
-
-def bottom():
-    turtle.setheading(270)
-    turtle.fd(100)
-
-
-def balls():
-    print(turtle.position())
-
-
-def goto():
-    turtle_pos = turtle.position()
-    return turtle_pos
+def apple():
+    global apple_apple
+    apple_1 = turtle.Turtle()
+    apple_1.shape('circle')
+    apple_1.color('red')
+    apple_1.penup()
+    x = randint(-display_width / 2 + 100, display_width / 2 - 100)
+    y = randint(-display_height / 2 + 100, display_height / 2 - 100)
+    apple_1.goto(x, y)
+    apple_apple = 0
+    return apple_apple
 
 
 # цвета и скорость
@@ -37,31 +41,18 @@ display = turtle.Screen()
 display_width = 900
 display_height = 600
 display.setup(display_width, display_height)
-display.bgcolor(30, 50, 0)
+display.bgcolor(110, 110, 50)
 
 # рисование яблок
 apple_1 = turtle.Turtle()
-apple_2 = turtle.Turtle()
-apple_3 = turtle.Turtle()
 apple_1.shape('circle')
-apple_2.shape('circle')
-apple_3.shape('circle')
-apple_2.color('red')
 apple_1.color('red')
-apple_3.color('red')
-
 apple_1.penup()
-apple_2.penup()
-apple_3.penup()
-x = randint(-display_width / 2,display_width / 2)
-y = randint(-display_height / 2, display_height / 2)
+x = randint(-display_width / 2 + 100, display_width / 2 - 100)
+y = randint(-display_height / 2 + 100, display_height / 2 - 100)
 apple_1.goto(x, y)
-x = randint(-display_width / 2, display_width / 2)
-y = randint(-display_height / 2, display_height / 2)
-apple_2.goto(x, y)
-x = randint(-display_width / 2, display_width / 2)
-y = randint(-display_height / 2, display_height / 2)
-apple_3.goto(x, y)
+
+apple_apple = 1
 
 # курсор из черепашки
 turtle.color(255, 182, 117)
@@ -70,21 +61,18 @@ turtle.shape('circle')
 #подготовка к while
 turtle.goto(0, 0)
 ball = 0
+ball_next = 0
 turtle.penup()
 
 # передвижение
+turtle.onscreenclick(move)
 
-turtle.onscreenclick(turtle.goto)
-x_range = range(apple_1.xcor() - 10, apple_1.xcor() + 10)
-y_range = range(apple_1.ycor() - 10, apple_1.ycor() + 10)
-apple_pos = x_range, y_range
-x_t = range(turtle.xcor() - 10, turtle.xcor() + 10)
-y_t = range(turtle.ycor() - 10, turtle.ycor() + 10)
-turtle_pos = x_t, y_t
-if turtle_pos in apple_pos:
-    ball += 1
-if ball == 1:
-    print('УРА ПОБЕДА')
+#while - цикл бесконечности
+for i in range(100):
+    turtle.onscreenclick(move)
+    if apple_apple == 0:
+        apple()
+
 
 turtle.listen()
 turtle.mainloop()
