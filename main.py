@@ -28,6 +28,11 @@ def move(x, y):
             apple_1.color('red')
             apple_1.goto(x, y)
 
+            pen.clear()
+            pen.goto(0, display_height / 2 - 50)
+            pen.color('midnightblue')
+            pen.write('Score = {}'.format(ball_abs), False, align='center', font=("Arial", 20, "normal"))
+
     if abs(turtle.xcor() - app_big.xcor()) <= 10 and abs(turtle.ycor() - app_big.ycor()) <= 10: #с супер черепашкой
         app_big_ball_next += 5
         app_big_ball += 1
@@ -35,6 +40,12 @@ def move(x, y):
         if app_big_ball != app_big_ball_next:
             print(ball_abs)
             print('Удалить!')
+            pen.goto(0, display_height / 2 - 50)
+
+            pen.clear()
+            pen.color('midnightblue')
+            pen.write('Score = {}'.format(ball_abs), False, align='center', font=("Arial", 20, "normal"))
+
 
 def apple():
     apple_1 = turtle.Turtle()
@@ -58,6 +69,11 @@ display_width = 900
 display_height = 600
 display.setup(display_width, display_height)
 display.bgcolor(102, 154, 156)
+
+#текст
+pen = turtle.Turtle()
+pen.penup()
+pen.hideturtle()
 
 # рисование яблок
 apple_1 = turtle.Turtle()
