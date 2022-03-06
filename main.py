@@ -35,9 +35,6 @@ def move(x, y):
         if app_big_ball != app_big_ball_next:
             print(ball_abs)
             print('Удалить!')
-            x_app = randint(-display_width / 2 + 100, display_width / 2 - 100)
-            y_app = randint(-display_height / 2 + 100, display_height / 2 - 100)
-            app_big.goto(x_app, y_app)
 
 def apple():
     apple_1 = turtle.Turtle()
@@ -101,6 +98,9 @@ app_big.goto(x_app, y_app)
 #while - цикл бесконечности
 for i in range(100):
     turtle.onscreenclick(move)
+    x_app = randint(-display_width / 2 + 100, display_width / 2 - 100)
+    y_app = randint(-display_height / 2 + 100, display_height / 2 - 100)
+    app_big.goto(x_app, y_app)
 
 
 turtle.listen()
