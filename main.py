@@ -12,14 +12,22 @@ def move(x, y):
     if ball != ball_next: #при попадании черепашка dead :(
         print(ball_next)
         ball = ball_next
+        apple_1.color('green')
         apple_1.hideturtle()
-        if apple_1.isvisible() == False:
+        if apple_1.isvisible() == False: # удалить, если невидима
+            apple_1.showturtle()
             print('Удалить!')
+            apple_1.goto(0,0)
+            apple_1.penup()
+            x = randint(-display_width / 2 + 100, display_width / 2 - 100)
+            y = randint(-display_height / 2 + 100, display_height / 2 - 100)
+            apple_1.color('red')
+            apple_1.goto(x, y)
+
         apple_apple = 0
         return apple_apple
 
 def apple():
-    global apple_apple
     apple_1 = turtle.Turtle()
     apple_1.shape('circle')
     apple_1.color('red')
@@ -27,8 +35,6 @@ def apple():
     x = randint(-display_width / 2 + 100, display_width / 2 - 100)
     y = randint(-display_height / 2 + 100, display_height / 2 - 100)
     apple_1.goto(x, y)
-    apple_apple = 0
-    return apple_apple
 
 
 # цвета и скорость
@@ -70,8 +76,6 @@ turtle.onscreenclick(move)
 #while - цикл бесконечности
 for i in range(100):
     turtle.onscreenclick(move)
-    if apple_apple == 0:
-        apple()
 
 
 turtle.listen()
