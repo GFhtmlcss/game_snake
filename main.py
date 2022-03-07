@@ -10,6 +10,20 @@ def move(x, y):
     global ball_abs
     global app_big_ball_next
     turtle.goto(x, y)
+
+    if abs(turtle.xcor() - app_big.xcor()) <= 10 and abs(turtle.ycor() - app_big.ycor()) <= 10: #с супер черепашкой
+        app_big_ball_next += 5
+        app_big_ball += 1
+        ball_abs += 5
+        if app_big_ball != app_big_ball_next:
+            print(ball_abs)
+            print('Удалить!')
+            pen.goto(0, display_height / 2 - 50)
+
+            pen.clear()
+            pen.color('midnightblue')
+            pen.write('Score = {}'.format(ball_abs), False, align='center', font=("Arial", 20, "normal"))
+
     if abs(turtle.xcor() - apple_1.xcor()) <= 10 and abs(turtle.ycor() - apple_1.ycor()) <= 10: #проверяет, когда черепашка попадает в мертвую черепашку
         ball_next += 1
         ball_abs += 1
@@ -30,19 +44,6 @@ def move(x, y):
 
             pen.clear()
             pen.goto(0, display_height / 2 - 50)
-            pen.color('midnightblue')
-            pen.write('Score = {}'.format(ball_abs), False, align='center', font=("Arial", 20, "normal"))
-
-    if abs(turtle.xcor() - app_big.xcor()) <= 10 and abs(turtle.ycor() - app_big.ycor()) <= 10: #с супер черепашкой
-        app_big_ball_next += 5
-        app_big_ball += 1
-        ball_abs += 5
-        if app_big_ball != app_big_ball_next:
-            print(ball_abs)
-            print('Удалить!')
-            pen.goto(0, display_height / 2 - 50)
-
-            pen.clear()
             pen.color('midnightblue')
             pen.write('Score = {}'.format(ball_abs), False, align='center', font=("Arial", 20, "normal"))
 
@@ -112,11 +113,11 @@ y_app = randint(-display_height / 2 + 100, display_height / 2 - 100)
 app_big.goto(x_app, y_app)
 
 #while - цикл бесконечности
-for i in range(100):
-    turtle.onscreenclick(move)
+while True:
     x_app = randint(-display_width / 2 + 100, display_width / 2 - 100)
     y_app = randint(-display_height / 2 + 100, display_height / 2 - 100)
     app_big.goto(x_app, y_app)
+    turtle.onscreenclick(move)
 
 
 turtle.listen()
