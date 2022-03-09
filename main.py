@@ -9,6 +9,7 @@ def move(x, y):
     global ball
     global ball_abs
     global app_big_ball_next
+
     turtle.goto(x, y)
 
     if abs(turtle.xcor() - app_big.xcor()) <= 10 and abs(turtle.ycor() - app_big.ycor()) <= 10: #с супер черепашкой
@@ -59,7 +60,7 @@ def apple():
 
 
 ball_abs = 0 #ТОЧНОЕ ПОДСЧИТЫВАНИЕ БАЛЛОВ
-# цвета и скорость
+# цвета, скорость и толщина
 turtle.speed(8)
 turtle.colormode(255) # цветовой режим
 turtle.shapesize(0.5)
@@ -75,6 +76,11 @@ display.bgcolor(102, 154, 156)
 pen = turtle.Turtle()
 pen.penup()
 pen.hideturtle()
+
+#начало писания (Score = 0, без .format)
+pen.goto(0, display_height / 2 - 50)
+pen.color('midnightblue')
+pen.write('Score = 0', False, align='center', font=("Arial", 20, "normal"))
 
 # рисование яблок
 apple_1 = turtle.Turtle()
