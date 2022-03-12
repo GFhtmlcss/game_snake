@@ -2,7 +2,7 @@ import turtle
 from random import randint
 
 
-def move(x, y):
+def move(x, y): #движение + подсчет очков и удаление черепашек
     global app_big_ball
     global apple_apple
     global ball_next
@@ -49,7 +49,7 @@ def move(x, y):
             pen.write('Score = {}'.format(ball_abs), False, align='center', font=("Arial", 20, "normal"))
 
 
-def apple():
+def apple(): # яблоки
     apple_1 = turtle.Turtle()
     apple_1.shape('circle')
     apple_1.color('red')
