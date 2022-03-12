@@ -70,7 +70,7 @@ display = turtle.Screen()
 display_width = 900
 display_height = 600
 display.setup(display_width, display_height)
-display.bgcolor(102, 154, 156)
+display.bgcolor(153, 201, 222)
 
 #текст
 pen = turtle.Turtle()
